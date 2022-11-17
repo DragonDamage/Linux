@@ -262,6 +262,7 @@ grub> insmod normal  # перевести режим grub в норм режим
 grub> normal  # запуск grub
 
 
+
 Scripts:
 ./script.sh  # запустить скрипт
 chmod 777 script_name.sh  # дать права на запуск скрипта
