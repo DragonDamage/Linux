@@ -32,6 +32,7 @@ export variable  # даёт возможность наследования вы
 man  # мануал по команде
 info  # аналог man
 crontab -e  # редактировать запуск по расписанию в системе
+set  # показать все переменные
 
 
 Установка и удаление программ:
@@ -72,6 +73,7 @@ sudo chmod u=rwx,g=rw,o=r name_file  # для владельца полыне п
 sudo chmod +x name_file  # для всех
 sudo chmod 777 name_file  # всё для всех
 last  # посмотреть кто заходил в систему из пользователей за последнее время
+finger  # показать пользователей в сети
 
 
 Работа с директориями:
@@ -79,6 +81,7 @@ mkdir name_directory  # создать директорию
 ls -d  # показать только директории
 cp -R directory other_directory  # скопировать директорию (с вложенными в неё файлами) в другую директорию
 rm -R name_directory  # удалить директорию
+du -hs ./folder  # посмотреть обьём директории
 
 
 Работа с файлами:
@@ -108,8 +111,11 @@ echo ????*  # вывести файлы 4 и больше символов
 touch file.txt{01..10}  # создать несколько файлов от 01 до 10
 diff file1.txt file2.txt  # сравнить содержимое файлов
 file file.txt  # узнать точный формать файла
-(дописать) uniq  # удалить дубли
-(дописать) -rni  # поиск по содержимому всех файлов
+find /* -name file.txt  # поиск файла file.txt по всем директориям
+find /* -type f или d или l -size + 40k  # поиск по f-файлу, d-директории или l-ссылке, и по размеру файла в килобайтах
+tac file.txt  # cat в обратном порядке
+uniq file.txt  # cat без дублей
+cut -c1-10 file.txt  # cat файла с первого символа по десятый
 
 
 Сочетание клавиш + полезные команды:
@@ -141,6 +147,7 @@ cat /etc/hostname  # изменить имя ПК
 cat /etc/hosts  # посмотреть имя и ip локалхоста и нашей тачки
 cat /etc/rsyslog.conf  # файл с настройками логирования
 cat /etc/crontab  # файл crontab
+/var/log/kern.log  # логи ядра
 
 
 Работа с архивами:
@@ -242,17 +249,17 @@ sudo mount /media/hdd  # монитруем диск
 ln -s /media/hdd ~/Desktop/HDD  # создаём символическую ссылку с диском на рабочем столе
 parted -l  # посмотреть таблицу разделов системы
 iostat  # показать загрузку дисковой подсистемы
+ftp  # передача данных другой системе
+
 
 Команды GRUB:
-grub> ls - посмотреть диски
-grub> set prefix=(hd0,1)/boot/grub - взять оба диска и загрузить boot раздел
-grub> set root=(hd0,1) - запустить это от рута
-grub> ls boot/grub - посмотреть grub.cfg
-grub> insmod ext2 - обновить grub (ext2 - файловая сисиетма)
-grub> insmod normal - перевести режим grub в норм режим
-grub> normal - запуск grub
-
-
+grub> ls  # посмотреть диски
+grub> set prefix=(hd0,1)/boot/grub  # взять оба диска и загрузить boot раздел
+grub> set root=(hd0,1)  # запустить это от рута
+grub> ls boot/grub  # посмотреть grub.cfg
+grub> insmod ext2  # обновить grub (ext2 - файловая сисиетма)
+grub> insmod normal  # перевести режим grub в норм режим
+grub> normal  # запуск grub
 
 
 Scripts:
