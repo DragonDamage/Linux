@@ -107,6 +107,7 @@ sudo useradd -s /bin/bash -m -d /home/user_name user_name  # создать по
 cd                               # перейти в директорию
 l                                # показать только директории
 mkdir name_directory             # создать директорию
+mkdir dir{1..3}                  # одной командой создать несколько директорий - создать dir1, dir2, dir3
 ls -d                            # показать только директории
 cp -R directory other_directory  # скопировать директорию (с вложенными в неё файлами) в другую директорию
 rm -R name_directory             # удалить директорию
