@@ -342,7 +342,7 @@ grub> normal                        # запуск grub
 
 
 
->>> Scripts:
+# Scripts:
 ```bash
 ./script.sh               # запустить скрипт
 chmod 777 script_name.sh  # дать права на запуск скрипта
