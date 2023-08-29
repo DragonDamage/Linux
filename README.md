@@ -305,6 +305,7 @@ sudo fdisk -l                   # показать диски
 lsblk                           # показать диски с партициями
 df -h                           # показать диски
 du -h -d 1 /you/dir             # показать размер файлов и директорий внутри определяемой директории
+du -h -a | sort -h -r           # показать размер всех файлов и всех директорий
 sudo cfdisk /dev/sdb            # dos, создаем партицию диска
 sudo mkfs.ntfs -f /dev/sdb1     # форматировать диск
 sudo nano /etc/fstab            # /dev/sdb1 /media/hdd ntfs default 0 0  # делаем автомонтирование диска
