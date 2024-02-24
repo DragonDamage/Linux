@@ -282,20 +282,27 @@ curl -Lv ya.ru     # Отправить HTTP запрос на сервер
 curl -v telnet://127.0.0.1:22  # Проверить доступность удаленного порта
 ```
 
-> SSH:
+> SSH [Secure Shell Protocol]:
 ```bash
-sudo apt-get install openssh-server             # Ставим ssh-сервер на тачку
-sudo systemctl status ssh                       # Проверить работает ли сервис ssh
-sudo systemctl start ssh                        # Включить сервис ssh
-ssh <you_ip>                                    # Обычный способ подключиться по ssh к тачке
-ssh -p 22 user_name@you_ip                      # Подключиться по ssh к тачке с портом, user_name и айпишником
-ssh -i C:\Users\DragonDamage\vm-2-3mvbMejP.pem  # Подключение по ssh с помощью ключа .pem
-exit                                            # Выйти из сессии
+sudo apt-get install openssh-server       # Ставим ssh-сервер на тачку
+sudo systemctl status ssh                 # Проверить работает ли сервис ssh
+sudo systemctl start ssh                  # Включить сервис ssh
+ssh <you_ip>                              # Обычный способ подключиться по ssh к тачке
+ssh -p 22 user_name@you_ip                # Подключиться по ssh к тачке с портом, user_name и айпишником
+ssh -i C:\Users\user_name\key.pem         # Подключение по ssh с помощью ключа .pem
+exit                                      # Выйти из сессии
+ssh -L 9000:localhost:8000 {Server_NAME}  # Пробросить порт 8000 с сервера localhost на нашу тачку с портом 9000 (теперь приложение, которое было на 8000 порту мы пожем глянуть на нашей тачке по порту 9000)
 ```
 > Генерация ключей ssh:
 ```bash
-ssh-keygen                 # Сгенерировать пару ключей (со стороны АРМа)
+ssh-keygen                 # Сгенерировать пару ключей RSA формата (со стороны АРМа)
+ssh-keygen -t ed25519      # Сгенерировать пару ключей более нового формата (со стороны АРМа)
 ssh-copy-id                # Переносим ключ паблик вручную в /.ssh в файл authorized_keys (далее нужно было перелогиниться)
+mkdir .ssh                 # Если на сервере нет скрытой директории .ssh, то создаем её
+nano .ssh/authorized_keys  # Вставляем public-key на сервер
+chown -R {NAME:NAME} /home/user_name/.ssh  # Делаем все файлы в директории от создателя {NAME}
+chmod 700 ~/.ssh           # Даём права доступа на папку
+chmod 644 ~/.ssh/*         # Даём права доступа на все файлы
 cd /etc/ssh → sshd_config  # Можно изменить порт (на 61022 например)
 ```
 
