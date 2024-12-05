@@ -41,7 +41,7 @@ dmesg                        # Лог ядра Linux
 sudo apt update              # Проверка обновлений
 sudo apt install <programm>  # Установка ПО
 sudo apt upgrade             # Установка обновлений
-sudo su                      # Вход под рутом и остаться в нём
+sudo su / sudo -s            # Вход под рутом и остаться в нём
 neofetch                     # Как свойства компьютера в Windows
 lsscsi                       # Диспетчер устройств (dec/sd*)
 type                         # Узнать тип команды
@@ -256,6 +256,22 @@ jobs                     # Посмотреть есть ли приостано
 nice -n 3 bash           # Запустить bash с приоритетом процесса 3
 ps I                     # Показать процессы по приоритетам
 time wget https://ya.ru  # Секундомер позволяющий подсчитать время исполнения процесса (real - время исполнения, user - сколько времени пользователь занял у CPU, sys - сколько времени CPU было потрачено системой)
+```
+
+> [systemctl] Работа с сервисами:
+```bash
+systemctl status name_service.service     # Показать статус сервиса
+systemctl status -l name_service.service  # Показать более подробный статус сервиса
+systemctl start name_service.service      # Запустить сервис
+systemctl stop name_service.service       # Остановить сервис
+systemctl restart name_service.service    # Рестарт сервиса
+systemctl enable name_service.service     # Всегда запускать сервис при включении ПК
+```
+
+> [journalctl] Работа с логами сервисов:
+```bash
+journalctl -e name_service.service # Смотрим самые свежие логи
+
 ```
 
 > Работа с сетью и портами:
