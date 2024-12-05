@@ -282,8 +282,14 @@ systemctl enable name_service.service     # Всегда запускать се
 
 > [journalctl] Работа с логами сервисов:
 ```bash
-journalctl -e name_service.service # Смотрим самые свежие логи
-
+journalctl -e name_service.service   # Смотрим самые свежие логи
+journalctl -eu name_service.service  # -eu Фильтр по определенному юниту
+journalctl --all --since "5 minutes ago" --no-tail --no-pager -p 7 -f                # Смотрим логи за последние 5 минут
+journalctl --all --since "5 minutes ago" --no-tail --no-pager -p 7 -f | grep 'ERROR' # Смотрим логи за последние 5 минут с 'ERROR'
+journalctl --all --since "2024-07-09 12:00:00" --until "2024-07-09 21:00:00" --no-tail --no-pager -p 7 -u name_service.service > logs_name_service.txt  # Самый ТОП по логам
+journalctl -eu name_service.service --since today          # Лог за сегодня
+journalctl -eu name_service.service --since "2 hours ago"  # Лог за последние 2 часа
+journalctl -a --since today | grep <text> > logs.txt       # Логи по grep по логам всех сервисов
 ```
 
 > [ip] [ss] [netstat] Работа с сетью и портами:
