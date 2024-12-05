@@ -260,6 +260,15 @@ time wget https://ya.ru  # Секундомер позволяющий подс�
 
 > [systemctl] Работа с сервисами:
 ```bash
+systemctl list-units --type=service --state=running     # Просмотр всех активных сервисов
+systemctl list-units --type=service --all               # Просмотр всех сервисов (включая неактивные)
+systemctl list-units --state=failed --type=service      # Посмотреть все неудачно загруженные сервисы
+systemctl list-unit-files --state=failed --type=service # Посмотреть все неудачно загруженные сервисы
+systemctl list-units --type=service --state=running --no-pager --no-legend | awk '{print $1}' | xargs -I {} systemctl status {} --no-pager --no-legend  # Просмотр всех активных серисов с выводом времени запуска
+systemctl list-units --type=service --state=running --no-pager --no-legend | awk '{print $1}' | xargs -I {} sh -c "echo {}; systemctl status {} --no-pager --no-legend | grep 'Active:' | awk '{print \$2, \$3, \$4, \$5, \$6}'"  # То же самое, только вывести ещё дату
+systemctl show service_name.service      # Посмотреть настройки сервиса
+systemctl --type=service | grep failed   # Проверка сервисов на ошибки 
+---
 systemctl status name_service.service     # Показать статус сервиса
 systemctl status -l name_service.service  # Показать более подробный статус сервиса
 systemctl start name_service.service      # Запустить сервис
@@ -300,7 +309,7 @@ cat /etc/services | grep -i 9200 # Проверить свободный ли п
 curl -v telnet://127.0.0.1:22    # Проверить доступность удаленного порта
 ```
 
-> CURL [Secure Shell Protocol]:
+> CURL [Client URL]:
 ```bash
 curl https://link.ru           # Get запрос на чтение HTML страницы
 curl -X GET https://link.ru    # Get запрос на чтение HTML страницы
