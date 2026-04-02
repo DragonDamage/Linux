@@ -104,8 +104,8 @@ sudo usermod -aG adm {user_name}         # Добавить в список до
 sudo groupadd {group_name}               # Создать группу
 sudo groupdel {group_name}               # Удалить группу
 passwd                                   # Сменить самому себе пароль
-sudo chown -R andrey:www-data file_name  # Изменить владельца директории
-sudo chgrp -R adm file_name              # Изменить владельца только группы adm
+sudo chown -R {user}:{group} {file_name} # Изменить владельца файла или директории
+sudo chgrp -R adm {file_name}            # Изменить владельца только группы adm
 sudo chmod u=rwx,g=rw,o=r {file_name}    # Для владельца полные права (чтение, запись, исполнение), для группы (чтение,запись), для остальных (чтение) в name_file
 sudo chmod +x {file_name}                # Дать права на исполнение для всех
 sudo chmod 777 {file_name}               # Дать права на всё для всех
